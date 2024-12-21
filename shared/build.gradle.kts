@@ -189,6 +189,10 @@ kotlin {
             // JSON serialization
             // TODO use gson instead one day
             implementation(libs.kotlinx.serialization.json) // Compatible with Kotlin 1.9.0
+
+            // https://github.com/icerockdev/moko-mvvm
+            implementation("dev.icerock.moko:mvvm-core:0.16.1") // only ViewModel, EventsDispatcher, Dispatchers.UI
+            implementation("dev.icerock.moko:mvvm-compose:0.16.1") // api mvvm-core, getViewModel for Compose Multiplatform
         }
 
         androidMain.dependencies {
