@@ -8,8 +8,3 @@ data class BirdImage(
     val category: String,
     val path: String,
 )
-
-@Serializable
-data class BirdImageList(
-    val birdImageList: List<BirdImage>
-)

@@ -15,12 +15,8 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,11 +26,6 @@ import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
-import io.ktor.client.HttpClient
-import io.ktor.client.call.body
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.request.get
-import io.ktor.serialization.kotlinx.json.json
 import model.BirdImage
 
 @Composable
@@ -56,45 +47,20 @@ fun BirdAppTheme(
 @Composable
 fun App() {
     BirdAppTheme {
-
         val birdsViewModel = getViewModel(Unit, viewModelFactory { BirdsViewModel() })
         BirdsPage(birdsViewModel)
-
-
-//        var greetingText by remember { mutableStateOf("Hello, World!") }
-//        var showImage by remember { mutableStateOf(false) }
-//
-//        //Run only once
-//        LaunchedEffect(Unit) {
-//            println(getImages())
-//        }
-//
-//        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-//            Button(onClick = {
-//                greetingText = "Hello, ${getPlatformName()}"
-//                showImage = !showImage
-//            }) {
-//                Text(greetingText)
-//            }
-//            AnimatedVisibility(showImage) {
-//                KamelImage(
-//                    { asyncPainterResource("https://sebi.io/demo-image-api/pigeon/sara-kurfess-WJxYU_jpOHo-unsplash.jpg") },
-//                    "Pigeon"
-//                )
-//            }
-//        }
     }
 }
 
 @Composable
 fun BirdsPage(viewModel: BirdsViewModel) {
+    println("Hello, ${getPlatformName()}")
     val uitState by viewModel.uiState.collectAsState()
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-
         Row(
             Modifier.fillMaxWidth().padding(5.dp),
             horizontalArrangement = Arrangement.spacedBy(5.dp)
@@ -130,8 +96,6 @@ fun BirdsPage(viewModel: BirdsViewModel) {
                 }
             )
         }
-
-
     }
 }
 

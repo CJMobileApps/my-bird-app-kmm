@@ -15,11 +15,8 @@ data class BirdsUiState(
     val selectedCategory: String? = null,
 ) {
     val categories = images.map { it.category }.toSet()
-    val selectedImages = images.filter { it.category == selectedCategory}
-
+    val selectedImages = images.filter { it.category == selectedCategory }
 }
-
-
 
 class BirdsViewModel : ViewModel() {
     private val _uiState: MutableStateFlow<BirdsUiState> = MutableStateFlow(BirdsUiState())
@@ -29,7 +26,6 @@ class BirdsViewModel : ViewModel() {
         install(ContentNegotiation) {
             json()
         }
-
     }
 
     init {

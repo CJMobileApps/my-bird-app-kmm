@@ -1,14 +1,8 @@
 plugins {
-    // kotlin("multiplatform")
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
-    //alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.compose.compiler)
-    //alias(libs.plugins.kotlinMultiplatform)
-//    (libs.plugins.kotlinMultiplatform)
-//    kotlin("multiplatform") version "2.0.0"
 }
-
 
 kotlin {
     androidTarget()
@@ -23,7 +17,6 @@ kotlin {
 }
 
 android {
-   // compileSdk = (findProperty("android.compileSdk") as String).toInt()
     namespace = "com.myapplication"
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
