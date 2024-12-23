@@ -10,14 +10,13 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(project(":shared"))
-                implementation(libs.androidx.activity.compose)
             }
         }
     }
 }
 
 android {
-    namespace = "com.myapplication"
+    namespace = "com.cjmobileapps.quidditch_players_kmm_2024"
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 

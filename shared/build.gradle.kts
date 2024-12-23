@@ -58,11 +58,26 @@ kotlin {
             // https://github.com/icerockdev/moko-mvvm
             implementation("dev.icerock.moko:mvvm-core:0.16.1") // only ViewModel, EventsDispatcher, Dispatchers.UI
             implementation("dev.icerock.moko:mvvm-compose:0.16.1") // api mvvm-core, getViewModel for Compose Multiplatform
+
+            // needed for koin
+            api(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.lifecycle.viewmodel)
+            implementation(libs.navigation.compose)
         }
 
-        androidMain.dependencies {
-            // Ktor for Android
-            implementation(libs.ktor.client.android)
+        val androidMain by getting {
+            dependencies {
+                // Ktor for Android
+                implementation(libs.ktor.client.android)
+
+                // learning koin
+                api(libs.koin.android)
+                api(libs.koin.androidx.compose)
+                api(libs.androidx.activity.compose)
+
+            }
         }
 
         iosMain.dependencies {

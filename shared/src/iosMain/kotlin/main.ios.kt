@@ -1,5 +1,11 @@
 import androidx.compose.ui.window.ComposeUIViewController
+import di.initKoin
 
 actual fun getPlatformName(): String = "iOS"
 
-fun MainViewController() = ComposeUIViewController { App() }
+@Suppress("unused")
+fun MainViewController() = ComposeUIViewController(
+    configure = { initKoin() }
+) {
+    App()
+}

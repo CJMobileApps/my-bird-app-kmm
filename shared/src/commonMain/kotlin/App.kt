@@ -1,5 +1,6 @@
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -22,11 +23,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 import model.BirdImage
+import org.koin.compose.KoinContext
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun BirdAppTheme(
@@ -40,7 +46,23 @@ fun BirdAppTheme(
             large = AbsoluteCutCornerShape(0.dp),
         )
     ) {
-        content()
+        KoinContext {
+            //TODO another way to di val dbClient = koinInject<DbClient>()
+            val viewModel = koinViewModel<MyViewModel>()
+            NavHost(
+                navController = rememberNavController(),
+                startDestination = "home"
+            ) {
+                composable(route = "home") {
+                    Box(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        println("Home ViewModel " + viewModel.getHelloWorldString())
+                        content()
+                    }
+                }
+            }
+        }
     }
 }
 
